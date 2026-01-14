@@ -1,0 +1,26 @@
+import classNames from "classnames"
+import Link from "next/link"
+
+import { ThemeChangeButton } from "@/src/features"
+import { NAV_ITEMS } from "@/src/shared/constants"
+
+interface Props {
+	className?: string
+}
+
+export const Navbar = ({ className }: Props) => {
+	return (
+		<nav className={classNames("vsm:flex items-center gap-5.5 hidden")}>
+			<ul className='flex items-center gap-5.5'>
+				{NAV_ITEMS.map((item, index) => (
+					<li key={index}>
+						<Link className=' text-lg xl:text-xl' href={item.href}>
+							{item.name}
+						</Link>
+					</li>
+				))}
+			</ul>
+			<ThemeChangeButton />
+		</nav>
+	)
+}

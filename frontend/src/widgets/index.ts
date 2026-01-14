@@ -1,0 +1,5 @@
+export * from "./Header"
+export * from "./Hero"
+export * from "./Recent"
+export * from "./AllPosts"
+export * from "./Footer"

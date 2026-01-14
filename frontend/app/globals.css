@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+	--background: #ffffff;
+	--background-dark: #090d1f;
+	--text-color: #1a1a1a;
+	--text-gray: #667085;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-background-dark: var(--background-dark);
+	--color-text: var(--text-color);
+	--color-gray: var(--text-gray);
+
+	--font-main: var(--font-inter);
+
+	--breakpoint-vsm: 475px;
+}
+
+body {
+	@apply bg-background text-text font-main;
+}
+
+.container {
+	@apply max-w-7xl px-8 mx-auto;
+}
+
+button {
+	@apply cursor-pointer!;
+}
