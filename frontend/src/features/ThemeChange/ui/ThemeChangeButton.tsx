@@ -1,23 +1,40 @@
 "use client"
 import classNames from "classnames"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const ThemeChangeButton = () => {
 	const [theme, setTheme] = useState<"light" | "dark">("light")
+
+	useEffect(() => {
+		const storedTheme = localStorage.getItem("theme") || theme
+		if (storedTheme === "dark") {
+			setTheme("dark")
+			document.body.classList.add("dark")
+		} else {
+			document.body.classList.remove("dark")
+		}
+	}, [theme])
+
+	const onClick = () => {
+		const newValue = theme === "light" ? "dark" : "light"
+		localStorage.setItem("theme", newValue)
+		setTheme(newValue)
+	}
+
+	console.log(theme)
+
 	return (
 		<button
-			onClick={() =>
-				setTheme(prev => (prev === "light" ? "dark" : "light"))
-			}
+			onClick={onClick}
 			className={classNames(
-				"flex items-center gap-4  py-2 px-4 rounded-full transition",
-				theme === "light" ? "bg-background-dark" : "bg-background"
+				"flex items-center gap-4 rounded-full px-4 py-2 transition",
+				theme === "light" ? "bg-background-dark" : "bg-white"
 			)}
 		>
 			<div
 				className={classNames({
-					[" bg-background-dark rounded-full"]: theme === "dark"
+					["bg-background-dark rounded-full"]: theme === "dark"
 				})}
 			>
 				<Image
@@ -32,7 +49,7 @@ export const ThemeChangeButton = () => {
 			</div>
 			<div
 				className={classNames({
-					[" bg-white rounded-full"]: theme === "light"
+					["rounded-full bg-white"]: theme === "light"
 				})}
 			>
 				<Image

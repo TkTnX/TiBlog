@@ -23,8 +23,14 @@ body {
 	@apply bg-background text-text font-main;
 }
 
+body.dark {
+	--text-gray: #efefef;
+	--background: #090d1f;
+	--text-color: #fff;
+}
+
 .container {
-	@apply max-w-7xl px-8 mx-auto;
+	@apply mx-auto max-w-7xl px-8;
 }
 
 button {

@@ -10,11 +10,16 @@ interface Props {
 
 export const Navbar = ({ className }: Props) => {
 	return (
-		<nav className={classNames("vsm:flex items-center gap-5.5 hidden")}>
-			<ul className='flex items-center gap-5.5'>
+		<nav
+			className={classNames(
+				"vsm:flex hidden items-center gap-5.5",
+				className
+			)}
+		>
+			<ul className='vsm:flex-row flex flex-col items-center gap-5.5'>
 				{NAV_ITEMS.map((item, index) => (
 					<li key={index}>
-						<Link className=' text-lg xl:text-xl' href={item.href}>
+						<Link className='text-lg xl:text-xl' href={item.href}>
 							{item.name}
 						</Link>
 					</li>

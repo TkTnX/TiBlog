@@ -1,19 +1,14 @@
-import { Navbar } from "."
-import { Menu } from "lucide-react"
+import { MenuButton, Navbar } from "."
 import Link from "next/link"
 
 export const Header = () => {
 	return (
-		<header className='container mt-7.5 h-15 flex items-center justify-between'>
-			<Link href={"/"} className='text-lg xl:text-xl font-semibold'>
+		<header className='container mt-7.5 flex h-15 items-center justify-between'>
+			<Link href={"/"} className='text-lg font-semibold xl:text-xl'>
 				TiBlog
 			</Link>
 
-			<div>
-				<button className='block vsm:hidden'>
-					<Menu />
-				</button>
-			</div>
+			<MenuButton />
 			<Navbar />
 		</header>
 	)
