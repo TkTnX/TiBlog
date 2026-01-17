@@ -8,8 +8,9 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule)
 	const config = new ConfigService()
 
-  app.use(cookieParser())
-  
+	app.use(cookieParser())
+	app.setGlobalPrefix('api')
+
 	app.enableCors({
 		origin: config.getOrThrow<string>('CLIENT_URL').split(','),
 		credentials: true

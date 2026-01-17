@@ -1,12 +1,79 @@
 generator client {
   provider = "prisma-client"
-  output   = "./generated/prisma"
+  output   = "./generated"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-model Test {
+model Post {
   id String @id @default(uuid())
+
+  preview String
+  title   String
+  content String
+  views   Int @default(0)
+
+  categories Category[]
+  comments   Comment[]
+  likes      Like[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("posts")
+}
+
+model Category {
+  id String @id @default(uuid())
+
+  name  String
+  color String
+
+  posts Post[]
+
+  @@map("categories")
+}
+
+model Like {
+  id String @id @default(uuid())
+
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@map("likes")
+}
+
+model Comment {
+  id String @id @default(uuid())
+
+  text   String
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String?
+
+  @@map("comments")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  avatar   String?
+  username String
+  password String
+  email    String  @unique
+
+  likes     Like[]
+  comments  Comment[]
+  
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("users")
 }

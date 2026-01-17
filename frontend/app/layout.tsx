@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { Footer } from "@/src/widgets"
 import { Header } from "@/src/widgets/Header"
+import { Providers } from "@/src/shared/components"
 
 const font = Inter({
 	variable: "--font-inter",
@@ -20,13 +21,16 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+
 	return (
 		<html suppressHydrationWarning={true} lang='ru'>
-			<body className={`${font.variable} antialiased`}>
-				<Header />
-				<main>{children}</main>
-				<Footer />
-			</body>
+			<Providers>
+				<body className={`${font.variable} antialiased`}>
+					<Header />
+					<main>{children}</main>
+					<Footer />
+				</body>
+			</Providers>
 		</html>
 	)
 }

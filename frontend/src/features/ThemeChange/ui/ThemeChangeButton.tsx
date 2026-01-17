@@ -22,7 +22,6 @@ export const ThemeChangeButton = () => {
 		setTheme(newValue)
 	}
 
-	console.log(theme)
 
 	return (
 		<button

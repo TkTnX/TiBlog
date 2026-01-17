@@ -4,7 +4,9 @@ import {
 	OnModuleDestroy,
 	OnModuleInit
 } from '@nestjs/common'
-import { PrismaClient } from 'prisma/generated/prisma/client'
+import { ConfigService } from '@nestjs/config'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { PrismaClient } from 'prisma/generated/client'
 
 @Injectable()
 export class PrismaService
@@ -12,6 +14,15 @@ export class PrismaService
 	implements OnModuleDestroy, OnModuleInit
 {
 	private logger = new Logger(PrismaService.name)
+
+	public constructor(private readonly configService: ConfigService) {
+		const adapter = new PrismaPg({
+			connectionString: configService.getOrThrow('DATABASE_URL')
+		})
+
+		super({ adapter })
+	}
+
 	async onModuleInit() {
 		try {
 			this.logger.log('Connecting to the DB')
@@ -21,6 +32,8 @@ export class PrismaService
 			this.logger.log('DB Successfully connected!')
 		} catch (error) {
 			this.logger.error(`Connecting error: ${error}`)
+
+			throw error
 		}
 	}
 
