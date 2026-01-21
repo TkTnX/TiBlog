@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 
-import { getPosts } from "@/src/shared/api"
+import { getPostById, getPosts } from "@/src/shared/api"
 import { IPost } from "@/src/shared/types"
 
 // TODO: В будущем добавить авто типизацию через swagger
@@ -15,7 +15,14 @@ export function usePosts() {
 			}> => getPosts(query)
 		})
 
+	const getPostByIdQuery = (id: string) =>
+		useQuery({
+			queryKey: ["post", id],
+			queryFn: (): Promise<IPost> => getPostById(id)
+		})
+
 	return {
-		getPostsQuery
+		getPostsQuery,
+		getPostByIdQuery
 	}
 }

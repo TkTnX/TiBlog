@@ -36,3 +36,11 @@ body.dark {
 button {
 	@apply cursor-pointer!;
 }
+
+select {
+	@apply accent-background cursor-pointer;
+}
+
+select option {
+	@apply bg-background;
+}

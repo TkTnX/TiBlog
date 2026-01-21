@@ -21,31 +21,33 @@ export const RecentPostsList = () => {
 				)}
 
 				<div className='flex flex-col gap-8'>
-					{isPending ? (
-						[...new Array(2)].map((_, index) => (
-							<Skeleton className='h-50' key={index} />
-						))
-					) : (
-						<>
-							<PostItem
-								post={data.items[1]}
-								className='gap-6 sm:flex-row'
-							/>
-							<PostItem
-								post={data.items[2]}
-								className='gap-6 sm:flex-row'
-							/>
-						</>
-					)}
+					{isPending
+						? [...new Array(2)].map((_, index) => (
+								<Skeleton className='h-50' key={index} />
+							))
+						: data.items.length >= 2 && (
+								<>
+									<PostItem
+										post={data.items[1]}
+										className='gap-6 sm:flex-row'
+									/>
+									<PostItem
+										post={data.items[2]}
+										className='gap-6 sm:flex-row'
+									/>
+								</>
+							)}
 				</div>
 
 				{isPending ? (
 					<Skeleton className='h-75 lg:col-span-3' />
 				) : (
-					<PostItem
-						post={data.items[3]}
-						className='lg:col-span-3 lg:flex-row'
-					/>
+					data.items.length >= 4 && (
+						<PostItem
+							post={data.items[3]}
+							className='lg:col-span-3 lg:flex-row'
+						/>
+					)
 				)}
 			</div>
 		</section>
