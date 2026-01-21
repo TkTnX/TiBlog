@@ -47,8 +47,21 @@ export class PostService {
 	}
 
 	public async getPostById(postId: string) {
-		const post = await this.prismaService.post.findUnique({
-			where: { id: postId }
+		const post = await this.prismaService.post.update({
+			where: { id: postId },
+			data: {
+				views: {
+					increment: 1
+				}
+			},
+			include: {
+				_count: {
+					select: {
+						likes: true
+					}
+				},
+				comments: true
+			}
 		})
 
 		if (!post) throw new NotFoundException('Пост не найден!')

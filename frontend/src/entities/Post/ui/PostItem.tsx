@@ -26,7 +26,7 @@ export const PostItem = ({ className, post }: Props) => {
 				/>
 			</div>
 			<div>
-				<p className='text-sm text-[#6941c6]'>
+				<p className='text-violet text-sm'>
 					{new Date(post.createdAt).toLocaleDateString("ru-RU", {
 						day: "2-digit",
 						month: "short",

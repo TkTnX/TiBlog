@@ -5,6 +5,7 @@
 	--background-dark: #090d1f;
 	--text-color: #1a1a1a;
 	--text-gray: #667085;
+	--text-violet: #6941c6;
 }
 
 @theme inline {
@@ -13,6 +14,7 @@
 	--color-background-dark: var(--background-dark);
 	--color-text: var(--text-color);
 	--color-gray: var(--text-gray);
+	--color-violet: var(--text-violet);
 
 	--font-main: var(--font-inter);
 

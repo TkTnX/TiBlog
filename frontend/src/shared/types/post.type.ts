@@ -1,4 +1,4 @@
-import { ICategory } from "."
+import { ICategory, IComment } from "."
 
 export interface IPost {
 	id: string
@@ -8,5 +8,9 @@ export interface IPost {
 	views: number
 	createdAt: Date
     updatedAt: Date
-    categories: ICategory[]
+	categories: ICategory[]
+	comments: IComment[]
+	_count: {
+		likes: number
+	}
 }

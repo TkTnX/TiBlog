@@ -8,7 +8,7 @@ export const Skeleton = ({ className }: Props) => {
 	return (
 		<div
 			className={classNames(
-				"w-full animate-pulse bg-gray-500",
+				"w-full animate-pulse rounded-lg bg-gray-500",
 				className
 			)}
 		/>

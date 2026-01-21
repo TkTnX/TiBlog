@@ -1,28 +1,23 @@
-import classNames from "classnames";
+import classNames from "classnames"
 
-
-
-import { ICategory } from "@/src/shared/types";
-
-
-
-
-
-
-
+import { ICategory } from "@/src/shared/types"
 
 interface Props {
-  category: ICategory
+	category: ICategory
 }
 
 export const CategoryItem = ({ category }: Props) => {
-  return (
+	console.log(category)
+	return (
 		<p
-			className={classNames(
-				`rounded-2xl bg-[${category.color}/40] px-2.5 py-0.5 text-[${category.color}]`
-			)}
+			style={{
+				backgroundColor: `${category.color}40`,
+
+				color: category.color
+			}}
+			className={classNames(`rounded-2xl px-2.5 py-0.5`)}
 		>
 			{category.name}
 		</p>
-  )
+	)
 }
