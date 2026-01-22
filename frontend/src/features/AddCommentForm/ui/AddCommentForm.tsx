@@ -43,22 +43,18 @@ export const AddCommentForm = ({ postId }: Props) => {
 				className='border-violet mt-4 flex items-center justify-between gap-2 rounded-lg border pr-4'
 			>
 				<FormInput
-					name="text"
+					errors={errors}
+					name='text'
 					disabled={isPending}
 					register={register}
 					type='text'
 					placeholder='Сообщение...'
-					className='flex-1 px-2 py-4'
+					className='border-none'
 				/>
 				<button disabled={isPending}>
 					<Send />
 				</button>
 			</form>
-			{errors.text && (
-				<ErrorMessage
-					text={errors.text?.message || "Что-то пошло не так"}
-				/>
-			)}
 		</>
 	)
 }

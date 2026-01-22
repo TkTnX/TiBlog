@@ -13,7 +13,7 @@ model Post {
   preview String
   title   String
   content String
-  views   Int @default(0)
+  views   Int    @default(0)
 
   categories Category[]
   comments   Comment[]
@@ -68,12 +68,18 @@ model User {
   username String
   password String
   email    String  @unique
+  role     ERole   @default(USER)
 
-  likes     Like[]
-  comments  Comment[]
-  
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
+  likes    Like[]
+  comments Comment[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("users")
+}
+
+enum ERole {
+  ADMIN
+  USER
 }

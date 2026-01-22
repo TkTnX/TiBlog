@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString, Length } from 'class-validator'
 export class RegisterRequest {
 	@IsNotEmpty()
 	@IsString()
-	@Length(0, 50)
+	@Length(3, 50)
 	username: string
 
 	@IsNotEmpty()
