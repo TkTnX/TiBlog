@@ -22,7 +22,11 @@
 }
 
 body {
-	@apply bg-background text-text font-main;
+	@apply bg-background text-text font-main ;
+}
+
+main {
+	@apply flex-1;
 }
 
 body.dark {
@@ -45,4 +49,8 @@ select {
 
 select option {
 	@apply bg-background;
+}
+
+input:focus-visible {
+	@apply outline-none;
 }

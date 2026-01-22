@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import * as cookieParser from 'cookie-parser'
@@ -10,6 +11,7 @@ async function bootstrap() {
 
 	app.use(cookieParser())
 	app.setGlobalPrefix('api')
+	app.useGlobalPipes(new ValidationPipe())
 
 	app.enableCors({
 		origin: config.getOrThrow<string>('CLIENT_URL').split(','),

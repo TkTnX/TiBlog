@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const CategoryItem = ({ category }: Props) => {
-	console.log(category)
 	return (
 		<p
 			style={{

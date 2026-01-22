@@ -1,6 +1,6 @@
+import { ErrorMessage } from "@/src/shared/components"
 import { AxiosError } from "axios"
 
-import { ErrorMessage } from "@/src/shared/components"
 
 export function showErrorMessage(error: AxiosError | Error) {
 	if (error instanceof AxiosError) {

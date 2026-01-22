@@ -1,4 +1,5 @@
-import { MenuButton, Navbar } from "."
+import { MenuButton } from "./MenuButton"
+import {  Navbar } from "."
 import Link from "next/link"
 
 export const Header = () => {

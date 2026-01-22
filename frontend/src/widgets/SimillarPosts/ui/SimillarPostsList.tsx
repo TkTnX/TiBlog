@@ -13,7 +13,7 @@ export const SimillarPostsList = ({ postId }: Props) => {
 
 	if ((!isPending && !data?.posts) || error) return null
 	return (
-		<div className='hidden max-w-60 md:block lg:w-85'>
+		<div className='hidden w-60 md:block lg:w-85'>
 			<h5 className='text-2xl font-semibold'>Похожие посты</h5>
 			<div className='mt-8 flex w-full flex-col gap-8'>
 				{isPending

@@ -1,6 +1,7 @@
 import classNames from "classnames"
 import Link from "next/link"
 
+import { UserButton } from "./UserButton"
 import { ThemeChangeButton } from "@/src/features"
 import { NAV_ITEMS } from "@/src/shared/constants"
 
@@ -24,6 +25,9 @@ export const Navbar = ({ className }: Props) => {
 						</Link>
 					</li>
 				))}
+				<li>
+					<UserButton />
+				</li>
 			</ul>
 			<ThemeChangeButton />
 		</nav>

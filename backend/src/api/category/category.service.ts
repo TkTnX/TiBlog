@@ -17,7 +17,8 @@ export class CategoryService {
 			include: {
 				posts: {
 					include: { categories: true },
-					where: { id: { not: id } }
+					where: { id: { not: id } },
+					take: 6
 				}
 			}
 		})
