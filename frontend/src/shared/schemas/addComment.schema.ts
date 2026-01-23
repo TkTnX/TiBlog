@@ -6,4 +6,4 @@ export const addCommentSchema = z.object({
 })
 
 export type AddCommentType = z.infer<typeof addCommentSchema>
-export type AddCommentVariables = AddCommentType & {postId: string}
+export type AddCommentVariables = AddCommentType & {postId: string, userId: string | null}

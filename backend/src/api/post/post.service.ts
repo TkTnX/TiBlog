@@ -60,7 +60,7 @@ export class PostService {
 						likes: true
 					}
 				},
-				comments: true
+				comments: { include: { user: true } }
 			}
 		})
 

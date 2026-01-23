@@ -1,24 +1,15 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
-import * as argon from 'argon2';
-import { Response } from 'express';
-import { User } from 'prisma/generated/client';
-import { LoginRequest, RegisterRequest } from 'src/api/auth/dto';
-import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
-
-
-
-
-
-
-
-
-
-
-
-
-
+import {
+	ConflictException,
+	Injectable,
+	NotFoundException
+} from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { JwtService } from '@nestjs/jwt'
+import * as argon from 'argon2'
+import { Response } from 'express'
+import { User } from 'prisma/generated/client'
+import { LoginRequest, RegisterRequest } from 'src/api/auth/dto'
+import { PrismaService } from 'src/infrastructure/prisma/prisma.service'
 
 @Injectable()
 export class AuthService {

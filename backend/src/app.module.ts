@@ -7,6 +7,7 @@ import { CategoryModule } from './api/category/category.module';
 import { CommentModule } from './api/comment/comment.module';
 import { UserModule } from './api/user/user.module';
 import { AuthModule } from './api/auth/auth.module';
+import { LikeModule } from './api/like/like.module';
 
 @Module({
 	imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from './api/auth/auth.module';
 		CommentModule,
 		UserModule,
 		AuthModule,
+		LikeModule,
 	]
 })
 export class AppModule {}

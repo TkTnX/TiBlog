@@ -4,9 +4,10 @@ import { useQueryClient } from "@tanstack/react-query"
 import { Send } from "lucide-react"
 import { useForm } from "react-hook-form"
 
-import { ErrorMessage, FormInput } from "@/src/shared/components"
+import { FormInput } from "@/src/shared/components"
 import { useComments } from "@/src/shared/hooks"
 import { AddCommentType, addCommentSchema } from "@/src/shared/schemas"
+import { useUserStore } from "@/src/shared/stores/useUserStore"
 
 interface Props {
 	postId: string
@@ -15,7 +16,7 @@ interface Props {
 export const AddCommentForm = ({ postId }: Props) => {
 	const queryClient = useQueryClient()
 	const { addCommentMutation } = useComments()
-
+	const { user } = useUserStore()
 	const {
 		register,
 		handleSubmit,
@@ -33,7 +34,7 @@ export const AddCommentForm = ({ postId }: Props) => {
 	})
 
 	const onSubmit = (values: AddCommentType) => {
-		mutate({ postId, ...values })
+		mutate({ postId, userId: user?.id || null, ...values })
 	}
 
 	return (
