@@ -1,7 +1,16 @@
-import { Controller } from '@nestjs/common';
-import { LikeService } from './like.service';
+import { Controller, Param, Post, UseGuards } from '@nestjs/common'
+import { AuthGuard } from 'src/guards/auth.guard'
 
-@Controller('like')
+import { LikeService } from './like.service'
+import { Authorized } from 'src/decorators/authorized.decorator'
+
+@Controller('likes')
 export class LikeController {
-  constructor(private readonly likeService: LikeService) {}
+	public constructor(private readonly likeService: LikeService) {}
+
+	@UseGuards(AuthGuard)
+	@Post(':postId')
+  public async like(@Param('postId') postId: string, @Authorized("userId") userId: string) {
+    return await this.likeService.like(postId, userId)
+  }
 }

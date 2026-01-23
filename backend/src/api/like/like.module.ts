@@ -1,9 +1,13 @@
-import { Module } from '@nestjs/common';
-import { LikeService } from './like.service';
-import { LikeController } from './like.controller';
+import { Module } from '@nestjs/common'
+import { AuthModule } from 'src/api/auth/auth.module'
+
+import { LikeController } from './like.controller'
+import { LikeService } from './like.service'
+import { UserModule } from 'src/api/user/user.module'
 
 @Module({
-  controllers: [LikeController],
-  providers: [LikeService],
+	imports: [AuthModule, UserModule],
+	controllers: [LikeController],
+	providers: [LikeService]
 })
 export class LikeModule {}
