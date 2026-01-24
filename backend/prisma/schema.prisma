@@ -31,7 +31,8 @@ model Category {
   name  String
   color String
 
-  posts Post[]
+  posts    Post[]
+  projects Project[]
 
   @@map("categories")
 }
@@ -66,8 +67,8 @@ model User {
 
   username String
   password String
-  email    String  @unique
-  role     ERole   @default(USER)
+  email    String @unique
+  role     ERole  @default(USER)
 
   likes    Like[]
   comments Comment[]
@@ -76,6 +77,16 @@ model User {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("users")
+}
+
+model Project {
+  id String @id @default(uuid())
+
+  title     String
+  preview   String
+  stack     String[]
+  content   String
+  categoris Category[]
 }
 
 enum ERole {

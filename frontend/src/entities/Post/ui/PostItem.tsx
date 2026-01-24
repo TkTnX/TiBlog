@@ -44,7 +44,7 @@ export const PostItem = ({ className, post }: Props) => {
 					<p className='text-gray mt-3'>{post.content}</p>
 				</div>
 				<div className='mt-6 flex flex-wrap items-center gap-2'>
-					{post.categories.map(category => (
+					{post.categories && post.categories.map(category => (
 						<CategoryItem key={category.id} category={category} />
 					))}
 				</div>
