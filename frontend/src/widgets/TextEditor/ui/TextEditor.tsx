@@ -7,7 +7,11 @@ import StarterKit from "@tiptap/starter-kit"
 
 import { MenuBar } from "./MenuBar"
 
-export const TextEditor = () => {
+interface Props {
+	setContent: (text: string) => void
+}
+
+export const TextEditor = ({ setContent }: Props) => {
 	const editor = useEditor({
 		extensions: [
 			StarterKit.configure({
@@ -21,11 +25,11 @@ export const TextEditor = () => {
 						class: "list-decimal ml-3"
 					}
 				}
-            }),
-            Image.configure({
-                inline: false,
-                allowBase64: true
-            }),
+			}),
+			Image.configure({
+				inline: false,
+				allowBase64: true
+			}),
 			TextAlign.configure({
 				types: ["heading", "paragraph"]
 			}),
@@ -36,14 +40,11 @@ export const TextEditor = () => {
 				class: "min-h-[156px] border rounded-md bg-background py-2 px-3 tiptap-editor "
 			}
 		},
-		onUpdate: ({ editor }) => {
-			console.log(editor.getJSON())
-			// onChange(editor.getHTML())
+		onUpdate: () => {
+			setContent(editor?.getHTML() || "")
 		},
 		immediatelyRender: false
-    })
-    
-    
+	})
 
 	return (
 		<div>

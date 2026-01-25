@@ -1,10 +1,12 @@
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { useRouter } from "next/navigation"
 
-import { getPostById, getPosts } from "@/src/shared/api"
-import { IPost } from "@/src/shared/types"
+import { createPost, getPostById, getPosts } from "@/src/shared/api"
+import { IPost, IPostRequest } from "@/src/shared/types"
 
 // TODO: В будущем добавить авто типизацию через swagger
 export function usePosts() {
+	const router = useRouter()
 	const getPostsQuery = (query?: Record<string, string>) =>
 		useQuery({
 			queryKey: ["posts", query],
@@ -21,8 +23,18 @@ export function usePosts() {
 			queryFn: (): Promise<IPost> => getPostById(id)
 		})
 
+	const createPostMutation = () =>
+		useMutation({
+			mutationKey: ["create post"],
+			mutationFn: (data: IPostRequest) => createPost(data),
+			onSuccess: (post: IPost) => {
+				router.push(`/blog/${post.id}`)
+			}
+		})
+
 	return {
 		getPostsQuery,
-		getPostByIdQuery
+		getPostByIdQuery,
+		createPostMutation
 	}
 }

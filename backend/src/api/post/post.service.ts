@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
+import { PostRequest } from 'src/api/post/dto/PostRequest'
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service'
 
 @Injectable()
@@ -67,5 +68,18 @@ export class PostService {
 		if (!post) throw new NotFoundException('Пост не найден!')
 
 		return post
+	}
+
+	public async createPost(dto: PostRequest) {
+		const newPost = await this.prismaService.post.create({
+			data: {
+				...dto,
+				categories: {
+					connect: dto.categories.map(id => ({ id }))
+				}
+			}
+		})
+
+		return newPost
 	}
 }

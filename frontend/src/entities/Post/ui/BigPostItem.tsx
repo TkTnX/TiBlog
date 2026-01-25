@@ -1,4 +1,5 @@
 "use client"
+import DOMPurify from "dompurify"
 import Image from "next/image"
 
 import { BigPostControls } from "./BigPostControls"
@@ -13,9 +14,7 @@ interface Props {
 export const BigPostItem = ({ id }: Props) => {
 	const { getPostByIdQuery } = usePosts()
 	const { data, isPending, error } = getPostByIdQuery(id)
-
 	if (error) return showErrorMessage(error)
-
 	if (isPending) return <Skeleton className='h-screen flex-1' />
 	return (
 		<section className='flex-1'>
@@ -36,13 +35,18 @@ export const BigPostItem = ({ id }: Props) => {
 			<div className='relative mt-8 h-50 w-full sm:h-100'>
 				<Image
 					className='object-cover'
-					src={data.preview}
+					src={`${data.preview}`}
 					alt={data.title}
 					fill
+					unoptimized
 				/>
 			</div>
-			{/* У этого элемента отключить сброс стилей, чтобы всё отображалось верно */}
-			<div className='post-content mt-8'>{data.content}</div>
+			<div
+				className='tiptap-editor mt-8'
+				dangerouslySetInnerHTML={{
+					__html: DOMPurify.sanitize(data.content)
+				}}
+			/>
 		</section>
 	)
 }

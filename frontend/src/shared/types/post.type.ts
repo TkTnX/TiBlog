@@ -14,3 +14,10 @@ export interface IPost {
 		likes: number
 	}
 }
+
+export interface IPostRequest {
+	content: string
+	preview: string
+	title: string
+	categories?: string[]
+}
