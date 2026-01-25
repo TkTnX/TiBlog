@@ -54,4 +54,12 @@ export class ProjectService {
 
 		return newProject
 	}
+
+	public async getProjectById(id: string) {
+		const project = await this.prismaService.project.findUnique({ where: { id } })
+		
+		if (!project) throw new NotFoundException("Проект не найден!")
+		
+		return project
+	}
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common'
 
 import { ProjectService } from './project.service'
 import { AuthGuard } from 'src/guards/auth.guard'
@@ -23,4 +23,9 @@ export class ProjectController {
 		public async createProject(@Body() dto: ProjectRequest) {
 			return await this.projectService.createProject(dto)
 		}
+
+	@Get(':id')
+	public async getProjectById(@Param("id") id: string) {
+		return await this.projectService.getProjectById(id)
+	}
 }

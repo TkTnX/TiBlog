@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 
-import { createProject, getProjects } from "@/src/shared/api"
+import { createProject, getProjectById, getProjects } from "@/src/shared/api"
 import { IProject, IProjectRequest } from "@/src/shared/types"
 
 export function useProjects() {
@@ -16,14 +16,20 @@ export function useProjects() {
 			}> => getProjects(query)
 		})
 
+	const getProjectByIdQuery = (id: string) =>
+		useQuery({
+			queryKey: ["get project by id", id],
+			queryFn: () => getProjectById(id)
+		})
+
 	const createProjectMutation = () =>
 		useMutation({
 			mutationKey: ["create post"],
-			mutationFn: (data: IProjectRequest) => createProject(data),
+			mutationFn: (data: IProjectRequest): Promise<IProject> => createProject(data),
 			onSuccess: (project: IProject) => {
 				router.push(`/projects/${project.id}`)
 			}
 		})
 
-	return { getProjectsQuery, createProjectMutation }
+	return { getProjectsQuery, createProjectMutation, getProjectByIdQuery }
 }

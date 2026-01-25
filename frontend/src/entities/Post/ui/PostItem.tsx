@@ -15,7 +15,9 @@ interface Props {
 export const PostItem = ({ className, post }: Props) => {
 	return (
 		<Link
-			href={`/blog/${post.id}`}
+			href={
+				!post.categories ? `/projects/${post.id}` : `/blog/${post.id}`
+			}
 			className={classNames("group flex flex-col gap-8", className)}
 		>
 			<div className='relative h-50 w-full'>

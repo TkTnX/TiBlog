@@ -10,3 +10,8 @@ export async function createProject(body: IProjectRequest) {
 	const { data } = await axiosInstance.post("projects", body)
 	return data
 }
+
+export async function getProjectById(id: string) {
+	const { data } = await axiosInstance.get(`projects/${id}`)
+	return data
+}

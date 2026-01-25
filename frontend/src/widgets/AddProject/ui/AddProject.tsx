@@ -13,7 +13,6 @@ export const AddProject = () => {
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState<string>("")
     const [previewUrl, setPreviewUrl] = useState("")
-    // TODO: Страница проекта
     // TODO: Добавление категорий
     // TODO: Выбор категорий
 	const [categories, setCategories] = useState<string[]>([])

@@ -1,16 +1,22 @@
 "use client"
 
-import { Navbar } from "."
-import { Menu, X } from "lucide-react"
+import { Menu } from "lucide-react"
+import { useState } from "react"
 
-// TODO: Сделать меню
+import { MobileMenu } from "@/src/shared/components/menu"
+
 export const MenuButton = () => {
-	
+	const [open, setOpen] = useState(false)
+
 	return (
 		<>
-			<button className='vsm:hidden relative block'>
+			<button
+				onClick={() => setOpen(true)}
+				className='vsm:hidden relative block'
+			>
 				<Menu />
 			</button>
+			<MobileMenu open={open} setOpen={setOpen} />
 		</>
 	)
 }

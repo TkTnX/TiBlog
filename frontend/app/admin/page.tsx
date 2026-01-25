@@ -17,7 +17,7 @@ const AdminPage = () => {
 			<h1 className='vsm:text-7xl border-y border-y-[#a8a8a8] py-8 text-center text-6xl font-bold sm:text-8xl md:text-9xl lg:text-[160px] xl:text-[240px]'>
 				Админка
 			</h1>
-			<div className='mt-10 flex items-center gap-10'>
+			<div className='mt-10 flex flex-col items-center gap-10 md:flex-row'>
 				<Link
 					className='hover:text-background hover:bg-violet flex w-full flex-col items-center gap-2 rounded-4xl border p-10'
 					href={"/admin/projects"}
