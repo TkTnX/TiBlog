@@ -46,6 +46,7 @@ export const TextEditor = ({ setContent }: Props) => {
 		immediatelyRender: false
 	})
 
+	if (!editor) return null
 	return (
 		<div>
 			<MenuBar editor={editor} />

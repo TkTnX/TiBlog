@@ -86,7 +86,10 @@ model Project {
   preview   String
   stack     String[]
   content   String
-  categoris Category[]
+  categories Category[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+
 }
 
 enum ERole {
