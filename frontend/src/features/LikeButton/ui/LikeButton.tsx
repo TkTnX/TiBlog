@@ -1,6 +1,8 @@
 "use client"
-import { useLikes } from "@/src/shared/hooks"
 import { useQueryClient } from "@tanstack/react-query"
+import { useRouter } from "next/navigation"
+
+import { useLikes } from "@/src/shared/hooks"
 
 interface Props {
 	id: string
@@ -10,9 +12,13 @@ interface Props {
 export const LikeButton = ({ id, likes }: Props) => {
 	const queryClient = useQueryClient()
 	const { likeMutation } = useLikes()
+	const router = useRouter()
 	const { mutate, isPending } = likeMutation({
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['post', id]})
+			queryClient.invalidateQueries({ queryKey: ["post", id] })
+		},
+		onError: () => {
+			router.push("/auth/login")
 		}
 	})
 

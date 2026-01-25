@@ -17,7 +17,6 @@ export class ProjectService {
 			skip: page === 1 ? 0 : limit * (page - 1)
 		})
 
-		console.log(page === 1 ? 0 : limit * (page - 1))
 
 		if (!projects) throw new NotFoundException('Проекты не найдены!')
 		return {

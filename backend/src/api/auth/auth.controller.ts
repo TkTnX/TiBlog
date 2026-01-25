@@ -1,5 +1,5 @@
-import { Body, Controller, Post, Res } from '@nestjs/common'
-import { Response } from 'express'
+import { Body, Controller, Post, Req, Res, UnauthorizedException } from '@nestjs/common'
+import { Request, Response } from 'express'
 import { LoginRequest, RegisterRequest } from 'src/api/auth/dto'
 
 import { AuthService } from './auth.service'
@@ -16,6 +16,17 @@ export class AuthController {
 	@Post('login')
 	public async login(@Res() res: Response, @Body() dto: LoginRequest) {
 		return this.authService.login(res, dto)
+	}
+
+	@Post('refresh')
+	public async refresh(@Req() req: Request, @Res() res: Response) {
+		const refreshToken = req.cookies.refreshToken
+
+		if (!refreshToken) {
+			throw new UnauthorizedException('Нет токена')
+		}
+
+		return this.authService.refreshTokens(res, refreshToken)
 	}
 
 }

@@ -1,7 +1,8 @@
 import {
 	ConflictException,
 	Injectable,
-	NotFoundException
+	NotFoundException,
+	UnauthorizedException
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
@@ -71,6 +72,20 @@ export class AuthService {
 				)
 			})
 		}
+	}
+
+	public async refreshTokens(res: Response, refreshToken: string) {
+		const payload = await this.jwtService.verifyAsync(refreshToken, {
+			secret: this.configService.getOrThrow('JWT_SECRET')
+		})
+
+		const user = await this.prismaService.user.findUnique({
+			where: { id: payload.userId }
+		})
+
+		if (!user) throw new UnauthorizedException()
+
+		return await this.auth(res, user)
 	}
 
 	private async auth(res: Response, user: User) {

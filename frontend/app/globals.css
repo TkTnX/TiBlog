@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 :root {
 	--background: #ffffff;
 	--background-dark: #090d1f;
@@ -22,7 +21,7 @@
 }
 
 body {
-	@apply bg-background text-text font-main ;
+	@apply bg-background text-text font-main;
 }
 
 main {
@@ -53,4 +52,31 @@ select option {
 
 input:focus-visible {
 	@apply outline-none;
+}
+
+.tiptap-editor h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.tiptap-editor h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.tiptap-editor h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.tiptap-editor strong {
+  font-weight: 700;
+}
+
+.tiptap-editor em {
+  font-style: italic;
+}
+
+.tiptap-editor mark {
+  background-color: yellow;
 }

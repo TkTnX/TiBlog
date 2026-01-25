@@ -2,6 +2,8 @@ import { ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import * as cookieParser from 'cookie-parser'
+import * as express from 'express'
+import { join } from 'path'
 
 import { AppModule } from './app.module'
 
@@ -11,6 +13,9 @@ async function bootstrap() {
 
 	app.use(cookieParser())
 	app.setGlobalPrefix('api')
+	console.log('STATIC PATH:', join(__dirname, '..', 'uploads'))
+
+	app.use('/uploads', express.static(join(process.cwd(), 'uploads')))
 	app.useGlobalPipes(new ValidationPipe())
 
 	app.enableCors({

@@ -9,6 +9,7 @@ import { UserModule } from './api/user/user.module';
 import { AuthModule } from './api/auth/auth.module';
 import { LikeModule } from './api/like/like.module';
 import { ProjectModule } from './api/project/project.module';
+import { UploadModule } from './api/upload/upload.module';
 
 @Module({
 	imports: [
@@ -23,6 +24,7 @@ import { ProjectModule } from './api/project/project.module';
 		AuthModule,
 		LikeModule,
 		ProjectModule,
+		UploadModule,
 	]
 })
 export class AppModule {}

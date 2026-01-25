@@ -14,6 +14,13 @@ export const UserButton = () => {
 		setUser(data)
 	}, [data, setUser])
 
+	if (user && user.role)
+		return (
+			<Link className='text-lg xl:text-xl' href={"/admin"}>
+				Админ
+			</Link>
+		)
+
 	if (user) return null
 	return (
 		<Link href={"/auth/login"}>
