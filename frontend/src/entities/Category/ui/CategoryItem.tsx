@@ -14,7 +14,7 @@ export const CategoryItem = ({ category }: Props) => {
 
 				color: category.color
 			}}
-			className={classNames(`rounded-2xl px-2.5 py-0.5`)}
+			className={classNames(` rounded-2xl px-2.5 py-0.5`)}
 		>
 			{category.name}
 		</p>

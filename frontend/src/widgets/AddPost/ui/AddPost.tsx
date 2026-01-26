@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { UploadFile } from "@/src/features"
+import { CategorySelect, UploadFile } from "@/src/features"
 import { FormInput } from "@/src/shared/components"
 import { usePosts } from "@/src/shared/hooks"
 import { TextEditor } from "@/src/widgets"
@@ -23,6 +23,8 @@ export const AddPost = () => {
 		})
 	}
 
+	console.log(categories)
+
 	return (
 		<div className='mx-auto w-full max-w-2xl'>
 			<h3 className='text-center text-4xl font-semibold'>
@@ -37,6 +39,10 @@ export const AddPost = () => {
 					name='title'
 					onChange={e => setTitle(e.target.value)}
 					value={title}
+				/>
+				<CategorySelect
+					setCategories={setCategories}
+					categories={categories}
 				/>
 				{/* Editor */}
 				<TextEditor setContent={setContent} />

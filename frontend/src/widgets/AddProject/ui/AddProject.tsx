@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { UploadFile } from "@/src/features"
+import {  UploadFile } from "@/src/features"
 import { FormInput } from "@/src/shared/components"
 import { useProjects } from "@/src/shared/hooks"
 import { TextEditor } from "@/src/widgets"
@@ -13,11 +13,7 @@ export const AddProject = () => {
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState<string>("")
 	const [previewUrl, setPreviewUrl] = useState("")
-	// TODO: Добавление категорий
-	// TODO: Выбор категорий
-	// TODO: Вывод самого популярного поста в админке
-	// TODO: Удаление постов, проектов (также как и категории)
-	// Фильтрация по категории
+	// TODO: Фильтрация по категории
 	const [categories, setCategories] = useState<string[]>([])
 	const [stack, setStack] = useState("")
 	const onSubmit = () => {

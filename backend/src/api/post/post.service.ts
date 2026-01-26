@@ -77,8 +77,11 @@ export class PostService {
 				categories: {
 					connect: dto.categories.map(id => ({ id }))
 				}
-			}
+			},
+			include: { categories: true }
 		})
+
+		console.log(newPost)
 
 		return newPost
 	}

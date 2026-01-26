@@ -6,3 +6,4 @@ export * from "./AddCommentForm"
 export * from "./UploadFile"
 export * from './AddCategoryForm'
 export * from './DeleteButton'
+export * from './CategorySelect'
