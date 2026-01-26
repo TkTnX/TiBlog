@@ -28,8 +28,10 @@ export const UploadFile = ({
 	return (
 		<label className='flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-gray-500 p-10'>
 			{preview && <img src={preview} className='max-w-100' />}
-			<Upload size={124} />
-			<p className='text-4xl font-bold'>{title}</p>
+			<Upload className='size-20 md:size-[124px]' />
+			<p className='text-center text-2xl font-bold md:text-4xl'>
+				{title}
+			</p>
 			<input
 				onChange={e => onChange(e.target.files?.[0])}
 				type='file'

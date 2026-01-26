@@ -13,6 +13,7 @@ interface Props {
 }
 
 export const PostItem = ({ className, post }: Props) => {
+	console.log(post)
 	return (
 		<Link
 			href={

@@ -4,3 +4,5 @@ export * from "./PostsSort"
 export * from "./LikeButton"
 export * from "./AddCommentForm"
 export * from "./UploadFile"
+export * from './AddCategoryForm'
+export * from './DeleteButton'

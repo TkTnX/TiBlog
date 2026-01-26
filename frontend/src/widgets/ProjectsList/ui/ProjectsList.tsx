@@ -1,15 +1,23 @@
 "use client"
+import { useQueryClient } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
-import { PostItem } from "@/src/entities"
-import { PaginationButtons } from "@/src/features"
+import {  PostItemWrapper } from "@/src/entities"
+import {  PaginationButtons } from "@/src/features"
 import { Skeleton } from "@/src/shared/components"
 import { showErrorMessage } from "@/src/shared/helpers"
 import { useProjects } from "@/src/shared/hooks"
-import { IPost } from "@/src/shared/types"
+import { cn } from "@/src/shared/libs"
+import { EModels, IPost } from "@/src/shared/types"
 
-export const ProjectsList = () => {
+interface Props {
+	className?: string
+	isAdminPage?: boolean
+}
+
+export const ProjectsList = ({ className, isAdminPage = false }: Props) => {
+	const queryClient = useQueryClient()
 	const searchParams = useSearchParams()
 	const pageQuery = searchParams.get("page")
 	const [page, setPage] = useState(Number(pageQuery) || 1)
@@ -25,20 +33,36 @@ export const ProjectsList = () => {
 	return (
 		<div className='container mt-15'>
 			<h3 className='text-2xl font-semibold'>Список проектов</h3>
-			<div className='mt-8 grid gap-8 nth-[3]:row-span-3 lg:grid-cols-2'>
+			<div
+				className={cn(
+					"mt-8 grid gap-8 nth-[3]:row-span-3 lg:grid-cols-2",
+					className
+				)}
+			>
 				{isPending ? (
 					[...new Array(8)].map((_, index) => (
 						<Skeleton key={index} className='h-100 w-full' />
 					))
 				) : data.items.length > 0 ? (
 					data.items.map(project => (
-						<PostItem
-							className='nth-[3n]:col-span-2'
+						<PostItemWrapper
 							key={project.id}
-							post={project as unknown as IPost}
+							item={project as unknown as IPost}
+							model={EModels.projects}
+							onSuccess={() =>
+								queryClient.invalidateQueries({
+									queryKey: ["get projects", searchParams]
+								})
+							}
+							isAdminPage={isAdminPage}
 						/>
 					))
 				) : (
+					// <PostItem
+					// 	className='nth-[3n]:col-span-2'
+					// 	key={project.id}
+					// 	post={project as unknown as IPost}
+					// />
 					<p className='col-span-4 text-center text-gray-500'>
 						Проекты не найдены!
 					</p>

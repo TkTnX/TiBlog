@@ -12,9 +12,12 @@ export const AddProject = () => {
 	const { mutate, isPending } = createProjectMutation()
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState<string>("")
-    const [previewUrl, setPreviewUrl] = useState("")
-    // TODO: Добавление категорий
-    // TODO: Выбор категорий
+	const [previewUrl, setPreviewUrl] = useState("")
+	// TODO: Добавление категорий
+	// TODO: Выбор категорий
+	// TODO: Вывод самого популярного поста в админке
+	// TODO: Удаление постов, проектов (также как и категории)
+	// Фильтрация по категории
 	const [categories, setCategories] = useState<string[]>([])
 	const [stack, setStack] = useState("")
 	const onSubmit = () => {
@@ -23,7 +26,7 @@ export const AddProject = () => {
 			preview: previewUrl,
 			title,
 			categories,
-			stack: stack.split(',')
+			stack: stack.split(",")
 		})
 	}
 

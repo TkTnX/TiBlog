@@ -82,4 +82,12 @@ export class PostService {
 
 		return newPost
 	}
+
+	public async deletePost(id: string) {
+		const post = await this.getPostById(id)
+
+		return await this.prismaService.post.delete({
+			where: { id: post.id }
+		})
+	}
 }

@@ -13,7 +13,6 @@ async function bootstrap() {
 
 	app.use(cookieParser())
 	app.setGlobalPrefix('api')
-	console.log('STATIC PATH:', join(__dirname, '..', 'uploads'))
 
 	app.use('/uploads', express.static(join(process.cwd(), 'uploads')))
 	app.useGlobalPipes(new ValidationPipe())

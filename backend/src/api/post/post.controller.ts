@@ -1,6 +1,7 @@
 import {
 	Body,
 	Controller,
+	Delete,
 	Get,
 	Param,
 	Post,
@@ -34,5 +35,12 @@ export class PostController {
 	@Post()
 	public async createPost(@Body() dto: PostRequest) {
 		return await this.postService.createPost(dto)
+	}
+
+	@UseGuards(AuthGuard, RolesGuard)
+	@Roles([ERole.ADMIN])
+	@Delete(':id')
+	public async deleteProject(@Param('id') id: string) {
+		return await this.postService.deletePost(id)
 	}
 }

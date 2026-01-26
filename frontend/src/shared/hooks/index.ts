@@ -6,3 +6,4 @@ export * from "./useUsers"
 export * from "./useLikes"
 export * from "./useProjects"
 export * from "./useUploads"
+export * from './useDelete'

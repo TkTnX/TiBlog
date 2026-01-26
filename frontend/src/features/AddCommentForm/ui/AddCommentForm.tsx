@@ -38,24 +38,22 @@ export const AddCommentForm = ({ postId }: Props) => {
 	}
 
 	return (
-		<>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className='border-violet mt-4 flex items-center justify-between gap-2 rounded-lg border pr-4'
-			>
-				<FormInput
-					errors={errors}
-					name='text'
-					disabled={isPending}
-					register={register}
-					type='text'
-					placeholder='Сообщение...'
-					className='border-none'
-				/>
-				<button disabled={isPending}>
-					<Send />
-				</button>
-			</form>
-		</>
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className='border-violet mt-4 flex items-center justify-between gap-2 rounded-lg border pr-4'
+		>
+			<FormInput
+				errors={errors}
+				name='text'
+				disabled={isPending}
+				register={register}
+				type='text'
+				placeholder='Сообщение...'
+				className='border-none'
+			/>
+			<button disabled={isPending}>
+				<Send />
+			</button>
+		</form>
 	)
 }

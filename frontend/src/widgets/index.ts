@@ -9,3 +9,4 @@ export * from "./ProjectsList"
 export * from "./AddPost"
 export * from "./TextEditor"
 export * from "./AddProject"
+export * from './CategoriesList'
