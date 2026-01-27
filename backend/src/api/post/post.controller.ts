@@ -15,7 +15,9 @@ import { AuthGuard } from 'src/guards/auth.guard'
 import { RolesGuard } from 'src/guards/roles.guard'
 
 import { PostService } from './post.service'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags("Посты")
 @Controller('posts')
 export class PostController {
 	constructor(private readonly postService: PostService) {}

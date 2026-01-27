@@ -15,7 +15,9 @@ import { AuthGuard } from 'src/guards/auth.guard'
 import { RolesGuard } from 'src/guards/roles.guard'
 
 import { CategoryService } from './category.service'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags("Категории")
 @Controller('categories')
 export class CategoryController {
 	public constructor(private readonly categoryService: CategoryService) {}

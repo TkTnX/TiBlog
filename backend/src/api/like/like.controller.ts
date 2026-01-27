@@ -3,7 +3,9 @@ import { AuthGuard } from 'src/guards/auth.guard'
 
 import { LikeService } from './like.service'
 import { Authorized } from 'src/decorators/authorized.decorator'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags("Лайки")
 @Controller('likes')
 export class LikeController {
 	public constructor(private readonly likeService: LikeService) {}

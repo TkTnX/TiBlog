@@ -1,23 +1,10 @@
-import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { extname } from 'path';
+import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common'
+import { FileInterceptor } from '@nestjs/platform-express'
+import { ApiTags } from '@nestjs/swagger'
 
+import { UploadService } from './upload.service'
 
-
-import { UploadService } from './upload.service';
-
-
-
-
-
-
-
-
-
-
-
-
+@ApiTags('Загрузка файлов')
 @Controller('uploads')
 export class UploadController {
 	constructor(private readonly uploadService: UploadService) {}

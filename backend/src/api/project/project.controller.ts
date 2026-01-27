@@ -8,6 +8,7 @@ import {
 	Query,
 	UseGuards
 } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { ERole } from 'prisma/generated/enums'
 import { ProjectRequest } from 'src/api/project/dto/ProjectRequest'
 import { Roles } from 'src/decorators/roles.decorator'
@@ -16,6 +17,7 @@ import { RolesGuard } from 'src/guards/roles.guard'
 
 import { ProjectService } from './project.service'
 
+@ApiTags('Проекты')
 @Controller('projects')
 export class ProjectController {
 	public constructor(private readonly projectService: ProjectService) {}

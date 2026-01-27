@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import * as cookieParser from 'cookie-parser'
 import * as express from 'express'
 import { join } from 'path'
@@ -13,6 +14,17 @@ async function bootstrap() {
 
 	app.use(cookieParser())
 	app.setGlobalPrefix('api')
+
+	const swaggerConfig = new DocumentBuilder()
+		.setTitle('TiBlog')
+		.setDescription('API для сервиса TiBlog')
+		.setVersion('0.1')
+		.build()
+
+	const documentFactory = () =>
+		SwaggerModule.createDocument(app, swaggerConfig)
+	SwaggerModule.setup('api', app, documentFactory)
+
 
 	app.use('/uploads', express.static(join(process.cwd(), 'uploads')))
 	app.useGlobalPipes(new ValidationPipe())
