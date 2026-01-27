@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import {  UploadFile } from "@/src/features"
+import { CategorySelect, UploadFile } from "@/src/features"
 import { FormInput } from "@/src/shared/components"
 import { useProjects } from "@/src/shared/hooks"
 import { TextEditor } from "@/src/widgets"
@@ -48,6 +48,10 @@ export const AddProject = () => {
 					name='stack'
 					onChange={e => setStack(e.target.value)}
 					value={stack}
+				/>
+				<CategorySelect
+					categories={categories}
+					setCategories={setCategories}
 				/>
 				{/* Editor */}
 				<TextEditor setContent={setContent} />

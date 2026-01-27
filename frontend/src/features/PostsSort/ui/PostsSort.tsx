@@ -13,7 +13,7 @@ export const PostsSort = () => {
 	}
 
 	return (
-		<div className='container mt-10'>
+		<div >
 			<select
 				onChange={e => onChange(e.target.value)}
 				className='rounded-2xl border p-2'

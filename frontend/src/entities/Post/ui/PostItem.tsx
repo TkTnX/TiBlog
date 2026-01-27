@@ -13,7 +13,6 @@ interface Props {
 }
 
 export const PostItem = ({ className, post }: Props) => {
-	console.log(post)
 	return (
 		<Link
 			href={
@@ -21,7 +20,7 @@ export const PostItem = ({ className, post }: Props) => {
 			}
 			className={classNames("group flex flex-col gap-8", className)}
 		>
-			<div className='relative h-50 w-full'>
+			<div className='relative h-50 w-full max-w-150'>
 				<Image
 					className='object-cover'
 					src={post.preview}
@@ -30,7 +29,7 @@ export const PostItem = ({ className, post }: Props) => {
 					unoptimized
 				/>
 			</div>
-			<div>
+			<div className='min-w-50 flex-1'>
 				<p className='text-violet text-sm'>
 					{new Date(post.createdAt).toLocaleDateString("ru-RU", {
 						day: "2-digit",

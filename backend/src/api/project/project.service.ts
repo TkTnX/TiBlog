@@ -15,7 +15,8 @@ export class ProjectService {
 		const projects = await this.prismaService.project.findMany({
 			take: limit,
 			skip: page === 1 ? 0 : limit * (page - 1),
-			orderBy: { createdAt: 'desc' }
+			orderBy: { createdAt: 'desc' },
+			include: { categories: true }
 		})
 
 		if (!projects) throw new NotFoundException('Проекты не найдены!')
@@ -24,6 +25,17 @@ export class ProjectService {
 			totalPages,
 			totalProjects
 		}
+	}
+
+	public async getProjectById(id: string) {
+		const project = await this.prismaService.project.findUnique({
+			where: { id },
+			include: { categories: true }
+		})
+
+		if (!project) throw new NotFoundException('Проект не найден!')
+
+		return project
 	}
 
 	public async createProject(dto: ProjectRequest) {
@@ -37,16 +49,6 @@ export class ProjectService {
 		})
 
 		return newProject
-	}
-
-	public async getProjectById(id: string) {
-		const project = await this.prismaService.project.findUnique({
-			where: { id }
-		})
-
-		if (!project) throw new NotFoundException('Проект не найден!')
-
-		return project
 	}
 
 	public async deleteProject(id: string) {

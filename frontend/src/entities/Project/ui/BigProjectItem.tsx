@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Skeleton } from "@/src/shared/components"
 import { showErrorMessage } from "@/src/shared/helpers"
 import { useProjects } from "@/src/shared/hooks"
+import { ItemCategoriesList } from "@/src/widgets"
 
 interface Props {
 	id: string
@@ -30,6 +31,10 @@ export const BigProjectItem = ({ id }: Props) => {
 			<h1 className='mt-8 text-2xl font-bold sm:text-4xl'>
 				{data.title}
 			</h1>
+			<ItemCategoriesList
+				className='mt-10'
+				categories={data.categories}
+			/>
 			<div className='relative mt-8 h-50 w-full sm:h-100'>
 				<Image
 					className='object-cover'

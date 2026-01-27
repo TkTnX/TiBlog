@@ -23,7 +23,6 @@ export const AddPost = () => {
 		})
 	}
 
-	console.log(categories)
 
 	return (
 		<div className='mx-auto w-full max-w-2xl'>

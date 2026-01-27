@@ -10,9 +10,9 @@ import { useCategories } from "@/src/shared/hooks"
 interface Props {
 	setCategories: Dispatch<SetStateAction<string[]>>
 	categories: string[]
+	className?: string
 }
-
-export const CategorySelect = ({ setCategories }: Props) => {
+export const CategorySelect = ({ setCategories, className }: Props) => {
 	const { getCategoriesQuery } = useCategories()
 	const { data, isPending, error } = getCategoriesQuery()
 	if (error) return showErrorMessage(error)
@@ -27,8 +27,8 @@ export const CategorySelect = ({ setCategories }: Props) => {
 	}
 
 	return (
-		<div className=''>
-			<p>Категории</p>
+		<div className={className}>
+			<p className='title'>Категории</p>
 			<div className='mt-4 flex flex-wrap gap-2'>
 				{isPending
 					? [...new Array(5)].map((_, index) => (

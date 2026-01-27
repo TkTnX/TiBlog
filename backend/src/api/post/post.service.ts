@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
+import { PostWhereInput } from 'prisma/generated/models'
 import { PostRequest } from 'src/api/post/dto/PostRequest'
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service'
 
@@ -16,6 +17,7 @@ export class PostService {
 		} = query || {}
 		const sortBy = querySort?.split(':') || ['createdAt', 'desc']
 		let orderBy: any
+		let where: PostWhereInput = restQuery
 
 		if (sortBy[0] === 'likes') {
 			orderBy = {
@@ -29,12 +31,24 @@ export class PostService {
 			}
 		}
 
+		// todo: Доедалтбь фильтрацию по категоирям
+		if ('categories' in restQuery) {
+			where = {
+				categories: {
+					some: {
+						id: {
+							in: restQuery.categories.split(',')
+						}
+					}
+				}
+			}
+		}
 		const postsCount = await this.prismaService.post.count()
 		const limit = Number(queryLimit) || 6
 		const page = queryPage || 1
 		const totalPages = Math.ceil(postsCount / Number(limit || 6))
 		const posts = await this.prismaService.post.findMany({
-			where: restQuery,
+			where,
 			take: limit,
 			skip: (Number(page) - 1) * limit,
 			include: { categories: true, likes: true },
@@ -61,7 +75,8 @@ export class PostService {
 						likes: true
 					}
 				},
-				comments: { include: { user: true } }
+				comments: { include: { user: true } },
+				categories: true
 			}
 		})
 
@@ -80,8 +95,6 @@ export class PostService {
 			},
 			include: { categories: true }
 		})
-
-		console.log(newPost)
 
 		return newPost
 	}

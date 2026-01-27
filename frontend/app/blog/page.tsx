@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 
-import { PostsSort } from "@/src/features"
+import { Filters, PostsSort } from "@/src/features"
 import { AllPostsList } from "@/src/widgets"
 
 export const metadata: Metadata = {
@@ -10,7 +10,10 @@ export const metadata: Metadata = {
 const BlogPage = async () => {
 	return (
 		<>
-			<PostsSort />
+			<div className='container mt-10 flex items-center justify-between gap-2'>
+				<PostsSort />
+				<Filters />
+			</div>
 			<AllPostsList limit={9} />
 		</>
 	)
