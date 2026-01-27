@@ -20,7 +20,7 @@ export const PostItem = ({ className, post }: Props) => {
 			}
 			className={classNames("group flex flex-col gap-8", className)}
 		>
-			<div className='relative h-50 w-full max-w-150'>
+			<div className='relative h-50 w-full'>
 				<Image
 					className='object-cover'
 					src={post.preview}

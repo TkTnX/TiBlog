@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
+import { ProjectWhereInput } from 'prisma/generated/models'
 import { ProjectRequest } from 'src/api/project/dto/ProjectRequest'
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service'
 
@@ -6,17 +7,32 @@ import { PrismaService } from 'src/infrastructure/prisma/prisma.service'
 export class ProjectService {
 	public constructor(private readonly prismaService: PrismaService) {}
 
-	public async getProjects(query?: Record<string, string>) {
+	public async getProjects(query: Record<string, string>) {
+		const { limit: limitQuery, page: pageQuery, ...restQuery } = query
 		// META
-		const limit = Number(query?.limit) || 6
-		const page = Number(query?.page) || 1
+		const limit = Number(limitQuery) || 6
+		const page = Number(pageQuery) || 1
+		let where: ProjectWhereInput = restQuery
+		if ('categories' in restQuery) {
+			where = {
+				categories: {
+					some: {
+						id: {
+							in: restQuery.categories.split(',')
+						}
+					}
+				}
+			}
+		}
+
 		const totalProjects = await this.prismaService.project.count()
 		const totalPages = Math.ceil(totalProjects / limit)
 		const projects = await this.prismaService.project.findMany({
 			take: limit,
 			skip: page === 1 ? 0 : limit * (page - 1),
 			orderBy: { createdAt: 'desc' },
-			include: { categories: true }
+			include: { categories: true },
+			where
 		})
 
 		if (!projects) throw new NotFoundException('Проекты не найдены!')

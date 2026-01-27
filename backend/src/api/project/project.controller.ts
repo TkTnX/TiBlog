@@ -21,7 +21,7 @@ export class ProjectController {
 	public constructor(private readonly projectService: ProjectService) {}
 
 	@Get()
-	public async getProjects(@Query() query?: Record<string, string>) {
+	public async getProjects(@Query() query: Record<string, string>) {
 		return this.projectService.getProjects(query)
 	}
 

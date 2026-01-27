@@ -5,7 +5,11 @@ import { useEffect, useState } from "react"
 
 import { CategorySelect } from "@/src/features/CategorySelect"
 
-export const Filters = () => {
+interface Props {
+	className?:string
+}
+
+export const Filters = ({className}: Props) => {
 	const [categories, setCategories] = useState<string[]>([])
 	const router = useRouter()
 	const pathname = usePathname()
@@ -28,7 +32,7 @@ export const Filters = () => {
 	}, [categories])
 
 	return (
-		<div className=''>
+		<div className={className}>
 			<CategorySelect
 				className='-mt-4 [&_.title]:hidden'
 				categories={categories}

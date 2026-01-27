@@ -31,7 +31,6 @@ export class PostService {
 			}
 		}
 
-		// todo: Доедалтбь фильтрацию по категоирям
 		if ('categories' in restQuery) {
 			where = {
 				categories: {
