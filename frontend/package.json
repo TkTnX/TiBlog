@@ -6,7 +6,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "eslint"
+		"lint": "eslint",
+		"generate": "orval --config ./orval.config.ts"
 	},
 	"dependencies": {
 		"-": "^0.0.1",
@@ -22,6 +23,7 @@
 		"axios": "^1.13.2",
 		"classnames": "^2.5.1",
 		"dompurify": "^3.3.1",
+		"dotenv": "^17.2.3",
 		"js-cookie": "^3.0.5",
 		"jsonwebtoken": "^9.0.3",
 		"lucide-react": "^0.562.0",
@@ -45,6 +47,7 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9",
 		"eslint-config-next": "16.1.1",
+		"orval": "^7.4.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"sass": "^1.97.3",
 		"tailwindcss": "^4",

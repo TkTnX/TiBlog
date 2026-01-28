@@ -16,14 +16,16 @@ async function bootstrap() {
 	app.setGlobalPrefix('api')
 
 	const swaggerConfig = new DocumentBuilder()
-		.setTitle('TiBlog')
+			.setTitle('TiBlog')
 		.setDescription('API для сервиса TiBlog')
 		.setVersion('0.1')
 		.build()
 
 	const documentFactory = () =>
 		SwaggerModule.createDocument(app, swaggerConfig)
-	SwaggerModule.setup('api', app, documentFactory)
+	SwaggerModule.setup('api', app, documentFactory, {
+		jsonDocumentUrl: 'openapi.json'
+	})
 
 
 	app.use('/uploads', express.static(join(process.cwd(), 'uploads')))

@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 
 import { createProject, getProjectById, getProjects } from "@/src/shared/api"
-import { IProject, IProjectRequest } from "@/src/shared/types"
+import { ProjectRequest, ProjectResponse } from "@/src/shared/types"
 
 export function useProjects() {
 	const router = useRouter()
@@ -11,7 +11,7 @@ export function useProjects() {
 			queryKey: ["get projects", query],
 			queryFn: (): Promise<{
 				totalPages: number
-				items: IProject[]
+				items: ProjectResponse[]
 				totalProjects: number
 			}> => getProjects(query)
 		})
@@ -25,8 +25,8 @@ export function useProjects() {
 	const createProjectMutation = () =>
 		useMutation({
 			mutationKey: ["create post"],
-			mutationFn: (data: IProjectRequest): Promise<IProject> => createProject(data),
-			onSuccess: (project: IProject) => {
+			mutationFn: (data: ProjectRequest): Promise<ProjectResponse> => createProject(data),
+			onSuccess: (project: ProjectResponse) => {
 				router.push(`/projects/${project.id}`)
 			}
 		})

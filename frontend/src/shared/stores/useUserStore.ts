@@ -1,9 +1,9 @@
-import { IUser } from "@/src/shared/types";
+import {  UserResponse } from "@/src/shared/types";
 import { create } from "zustand";
 
 interface IUserStore {
-    user: null | IUser
-    setUser: (user: IUser) => void
+    user: null | UserResponse
+    setUser: (user: UserResponse) => void
 }
 
 export const useUserStore = create<IUserStore>((set) => ({

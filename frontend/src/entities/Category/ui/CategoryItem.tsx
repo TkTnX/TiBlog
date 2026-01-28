@@ -1,9 +1,9 @@
+import { CategoryResponse } from "@/src/shared/types"
 import classNames from "classnames"
 
-import { ICategory } from "@/src/shared/types"
 
 interface Props {
-	category: ICategory
+	category: CategoryResponse
 }
 
 export const CategoryItem = ({ category }: Props) => {

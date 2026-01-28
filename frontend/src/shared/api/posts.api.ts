@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/src/shared/libs";
-import { IPostRequest } from "@/src/shared/types";
+import { PostRequest } from "@/src/shared/types";
 
 
 
@@ -17,7 +17,7 @@ export async function getPostById(id: string) {
 	return data
 }
 
-export async function createPost(body: IPostRequest) {
+export async function createPost(body: PostRequest) {
 	const { data } = await axiosInstance.post("posts", body)
 	return data
 }

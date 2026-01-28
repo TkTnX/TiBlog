@@ -3,10 +3,10 @@ import { useState } from "react"
 
 import { LikeButton } from "@/src/features"
 import { CommentsModal } from "@/src/shared/components/modals"
-import { IPost } from "@/src/shared/types"
+import { PostResponse } from "@/src/shared/types"
 
 interface Props {
-	post: IPost
+	post: PostResponse
 }
 
 export const BigPostControls = ({ post }: Props) => {

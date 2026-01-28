@@ -2,12 +2,12 @@ import { Modal } from "../ui/Modal"
 
 import { CommentItem } from "@/src/entities"
 import { AddCommentForm } from "@/src/features"
-import { IComment } from "@/src/shared/types"
+import { CommentResponse } from "@/src/shared/types"
 
 interface Props {
 	open: boolean
 	setOpen: (bool: boolean) => void
-	comments: IComment[]
+	comments: CommentResponse[]
 	postId: string
 }
 

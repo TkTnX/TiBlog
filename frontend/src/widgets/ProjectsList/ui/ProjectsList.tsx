@@ -9,7 +9,7 @@ import { Skeleton } from "@/src/shared/components"
 import { showErrorMessage } from "@/src/shared/helpers"
 import { useProjects } from "@/src/shared/hooks"
 import { cn } from "@/src/shared/libs"
-import { EModels, IPost } from "@/src/shared/types"
+import { EModels, PostResponse } from "@/src/shared/types"
 
 interface Props {
 	className?: string
@@ -51,7 +51,7 @@ export const ProjectsList = ({ className, isAdminPage = false }: Props) => {
 						<PostItemWrapper
 							
 							key={project.id}
-							item={project as unknown as IPost}
+							item={project as unknown as PostResponse}
 							model={EModels.projects}
 							onSuccess={() =>
 								queryClient.invalidateQueries({

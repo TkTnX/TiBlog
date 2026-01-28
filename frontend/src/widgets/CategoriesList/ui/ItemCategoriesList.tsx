@@ -1,10 +1,10 @@
 import classNames from "classnames"
 
 import { CategoryItem } from "@/src/entities"
-import { ICategory } from "@/src/shared/types"
+import { CategoryResponse } from "@/src/shared/types"
 
 interface Props {
-	categories: ICategory[]
+	categories: CategoryResponse[]
 	className?: string
 }
 

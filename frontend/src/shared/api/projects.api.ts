@@ -1,12 +1,12 @@
 import { axiosInstance } from "@/src/shared/libs"
-import { IProjectRequest } from "@/src/shared/types"
+import { ProjectRequest } from "@/src/shared/types"
 
 export async function getProjects(query?: Record<string, string>) {
 	const { data } = await axiosInstance.get("projects", { params: query })
 	return data
 }
 
-export async function createProject(body: IProjectRequest) {
+export async function createProject(body: ProjectRequest) {
 	const { data } = await axiosInstance.post("projects", body)
 	return data
 }

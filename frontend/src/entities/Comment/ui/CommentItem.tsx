@@ -1,9 +1,9 @@
+import { CommentResponse } from "@/src/shared/types"
 import { User } from "lucide-react"
 
-import { IComment } from "@/src/shared/types"
 
 interface Props {
-	comment: IComment
+	comment: CommentResponse
 }
 
 export const CommentItem = ({ comment }: Props) => {

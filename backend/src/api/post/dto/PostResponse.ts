@@ -1,6 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Comment, Like } from "prisma/generated/client";
-import { CategoryResponse } from "src/api/category/dto";
+import { ApiProperty } from '@nestjs/swagger';
+import { Comment, Like } from 'prisma/generated/client';
+import { CategoryResponse } from 'src/api/category/dto';
+import { CommentResponse } from 'src/api/comment/dto';
 
 
 
@@ -11,12 +12,10 @@ import { CategoryResponse } from "src/api/category/dto";
 
 
 
-
-
-
-
-
-
+class PostCountResponse {
+	@ApiProperty({ example: 5 })
+	likes: number
+}
 
 export class PostResponse {
 	@ApiProperty({
@@ -49,21 +48,46 @@ export class PostResponse {
 	})
 	title: string
 
+	@ApiProperty({
+		description: 'Просмотры',
+		example: 5,
+		type: Number
+	})
+	views: number
+
+	@ApiProperty({
+		description: 'Подсчёт лайков',
+		example: { likes: 5 },
+		type: () => PostCountResponse
+	})
+	_count: PostCountResponse
+
+	@ApiProperty({
+		description: 'Категории',
+		type: () => CategoryResponse,
+		isArray: true
+	})
 	categories: CategoryResponse[]
 	likes: Like[]
+
+	@ApiProperty({
+		description: 'Комментарии',
+		type: () => CommentResponse,
+		isArray: true
+	})
 	comments: Comment[]
 
 	@ApiProperty({
 		description: 'Дата создания поста',
 		example: '2026-01-25 09:30:53.379',
-		type: Date,
+		type: Date
 	})
-    createdAt: string
-    
+	createdAt: string
+
 	@ApiProperty({
 		description: 'Дата обновления поста',
 		example: '2026-01-25 09:30:53.379',
-		type: Date,
+		type: Date
 	})
 	updatedAt: string
 }

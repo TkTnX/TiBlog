@@ -2,13 +2,13 @@ import classNames from "classnames"
 
 import { PostItem } from "@/src/entities/Post/ui/PostItem"
 import { DeleteButton } from "@/src/features"
-import { EModels, IPost } from "@/src/shared/types"
+import { EModels, PostResponse } from "@/src/shared/types"
 
 interface Props {
 	onSuccess: () => void
 	model: EModels
 	isAdminPage?: boolean
-	item: IPost
+	item: PostResponse
 }
 
 export const PostItemWrapper = ({

@@ -5,10 +5,10 @@ import Link from "next/link"
 
 import { CategoryItem } from "@/src/entities/Category"
 import { htmlToText } from "@/src/shared/helpers"
-import { IPost } from "@/src/shared/types"
+import { PostResponse } from "@/src/shared/types"
 
 interface Props {
-	post: IPost
+	post: PostResponse
 	className?: string
 }
 
