@@ -28,7 +28,7 @@ export const PaginationButtons = ({ page, totalPages }: Props) => {
 				)}
 			>
 				<ArrowLeft className='text-gray' />
-				<p className='text-gray text-sm'>Previous</p>
+				<p className='text-gray text-sm'>Предыдущая</p>
 			</button>
 			<div className='flex items-center gap-0.5'>
 				{[...new Array(totalPages)].map((_, index) => (
@@ -57,7 +57,7 @@ export const PaginationButtons = ({ page, totalPages }: Props) => {
 					[{ hidden: totalPages === 1 }]
 				)}
 			>
-				<p className='text-gray text-sm'>Next</p>
+				<p className='text-gray text-sm'>Следующая</p>
 				<ArrowRight className='text-gray' />
 			</button>
 		</div>

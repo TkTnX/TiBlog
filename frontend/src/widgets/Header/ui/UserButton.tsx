@@ -14,6 +14,7 @@ export const UserButton = () => {
 		setUser(data)
 	}, [data, setUser])
 
+
 	if (user && user.role === "ADMIN")
 		return (
 			<Link className='text-lg xl:text-xl' href={"/admin"}>

@@ -1,5 +1,15 @@
 import { AddCategoryForm } from "@/src/features"
 import { CategoriesList } from "@/src/widgets"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+	title: "TiBlog | Админ-панель",
+	description: "TiBlog | Управление сайтом",
+	robots: {
+		index: false,
+		follow: false
+	}
+}
 
 const AdminCategoriesPage = () => {
 	return (

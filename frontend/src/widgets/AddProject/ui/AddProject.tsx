@@ -13,7 +13,6 @@ export const AddProject = () => {
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState<string>("")
 	const [previewUrl, setPreviewUrl] = useState("")
-	// TODO: Фильтрация по категории
 	const [categories, setCategories] = useState<string[]>([])
 	const [stack, setStack] = useState("")
 	const onSubmit = () => {

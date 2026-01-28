@@ -9,7 +9,6 @@ export const RecentPostsList = () => {
 	const { data, isPending, error } = getPostsQuery({ limit: "4" })
 
 	if (error) return showErrorMessage(error)
-
 	return (
 		<section className='container mt-15'>
 			<h2 className='text-2xl font-semibold'>Недавние посты</h2>
@@ -25,7 +24,7 @@ export const RecentPostsList = () => {
 						? [...new Array(2)].map((_, index) => (
 								<Skeleton className='h-50' key={index} />
 							))
-						: data.items.length >= 2 && (
+						: data.items.length > 2 && (
 								<>
 									<PostItem
 										post={data.items[1]}

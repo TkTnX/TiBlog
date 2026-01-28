@@ -1,5 +1,11 @@
+import { Metadata } from "next"
+
 import { BigPostItem } from "@/src/entities"
 import { SimillarPostsList } from "@/src/widgets"
+
+export const metadata: Metadata = {
+	title: "TiBlog | Публикация"
+}
 
 const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 	const id = (await params).id

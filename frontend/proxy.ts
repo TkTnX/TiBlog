@@ -5,12 +5,14 @@ const SECRET = process.env.JWT_SECRET || "secret1"
 
 export function proxy(request: NextRequest) {
 	const token = request.cookies.get("accessToken")
+	let payload: { role: string } | null = null
 
-	if (!token) return
-	const payload = jwt.verify(token?.value, SECRET) as { role: string }
+	if (token) {
+		payload = jwt.verify(token?.value, SECRET) as { role: string }
+	}
 	if (
 		request.nextUrl.pathname.startsWith("/admin") &&
-		payload.role !== "ADMIN"
+		(payload?.role !== "ADMIN" || !token)
 	) {
 		return NextResponse.redirect(new URL("/", request.url))
 	}
@@ -21,5 +23,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/auth/:path*", "/admin/:path*"]
+	matcher: ["/auth/:path*", "/admin", "/admin/:path*"]
 }
